@@ -1,5 +1,5 @@
 # HangmanPy
->python
+> Python
 
 # Things learned
 -Py functions
