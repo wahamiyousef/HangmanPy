@@ -37,11 +37,22 @@ def play(word):
         elif len(guess) == len(word) and guess.isalpha():
             if guess in guessed_words:
                 print("You already guessed the word", guess)
+            elif guess != word:
+                print(guess, "is not the word.")
+                tries -= 1
+                guessed_words.append(guess)
+            else:
+                guessed = True
+                word_completion = word
         else:
             print("Not a valid guess.")
         print(display_hangman(tries))
         print(word_completion)
         print("\n")
+    if guessed:
+        print("Congrats, you guessed the word, you win!")
+    else:
+        print("Sorry, you ran out of tries. The word was "+word+".")
 
 
 
@@ -120,3 +131,16 @@ def display_hangman(tries):
                 """
     ]
     return stages[tries]
+
+
+
+def main():
+    word = get_word()
+    play(word)
+    while input("Play again? (Y/N)").upper() == "Y":
+        word = get_word()
+        play(word)
+
+
+if __name__ == "__main__":
+    main()
